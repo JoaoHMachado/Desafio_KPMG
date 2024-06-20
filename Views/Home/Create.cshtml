@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Cadastrar Pessoa</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Home" asp-action="Create" method="post" onsubmit="return validateDependentes()">
+            <div class="form-group">
+                <label class="control-label">Insira o nome da pessoa:</label>
+                <input name="nome" class="form-control"  />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Insira a data de nascimento:</label>
+                <input name="idade" class="form-control"  type="date"/>
+                <span class="text-danger"></span>
+            </div>
+            <!-- Container for dependent inputs -->
+            <div id="dependents-container"></div>
+
+            <div class="form-group" style="padding-top: 1rem">
+                <button type="button" class="btn btn-secondary" onclick="addDependent()">Adicionar Dependente</button>
+            </div>
+
+            <div class="form-group" style="padding-top: 1rem">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+            <div class="form-group" style="padding-top: 1rem">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        // Exibe um alerta se houver uma mensagem
+        $(document).ready(function () {
+            var message = "@ViewBag.Message";
+            if (message) {
+                alert(message);
+            }
+        });
+    </script>
+}
+
+
+
+
+
+
+
+

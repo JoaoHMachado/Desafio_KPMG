@@ -1,0 +1,88 @@
+﻿@model List<WebAppPeopleCRUD.DTO.PessoaDTO>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    @{
+        if (Model.Count() == 0)
+        {
+            <p id="no-people-message">Nenhuma pessoa encontrada.</p>
+        }
+        else
+        {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Dependentes</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var pessoa in Model)
+                    {
+                            <tr>
+                                <td>@pessoa.NomePessoa</td>
+                            <td>@pessoa.IdadePessoa anos</td>
+                            <td>                                
+                                    @foreach (var dependente in pessoa.Dependentes)
+                                {
+                                    if (string.IsNullOrEmpty(dependente.NomeDependente))
+                                    {
+                                        <ul>N/A</ul>
+
+                                    }
+                                    else
+                                    {
+                                        <ul>@dependente.NomeDependente, @dependente.IdadeDependente anos</ul>
+                                    }
+                                }                                
+                                </td>                            
+                                <td>
+                                    <form asp-action="Edit" method="get">
+                                        <input type="hidden" name="id" value="@pessoa.IdPessoa" />
+                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form asp-action="Delete" method="post" onsubmit="return confirmDeletion();">
+                                        <input type="hidden" name="id" value="@pessoa.IdPessoa" />
+                                        <button type="submit" class="btn btn-danger">Deletar</button>
+                                    </form>
+                                </td>
+                            </tr>                        
+                    }
+                    </tbody>
+
+                </table>
+        }
+    }
+    <div style="display: flex; justify-content: center; flex-direction: column;">
+        <p style="padding-top: 1rem">
+            <a asp-controller="Home" asp-action="Create" class="btn btn-primary">Cadastrar Pessoa</a>
+        </p>
+        <p style="padding-top: 1rem" >
+            <a asp-controller="Home" asp-action="Search" class="btn btn-primary" name="Consultar">Consultar Pessoa</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Exibe um alerta se houver uma mensagem
+        $(document).ready(function () {
+            var message = "@ViewBag.Message";
+            if (message) {
+                alert(message);
+            }
+        });
+
+        function confirmDeletion() {
+            return confirm('Você tem certeza que deseja deletar esta pessoa?');
+        }
+
+        
+    </script>
+}

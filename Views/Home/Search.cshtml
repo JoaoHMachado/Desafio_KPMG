@@ -1,0 +1,73 @@
+﻿@model List<WebAppPeopleCRUD.DTO.PessoaDTO>
+@{
+    ViewData["Title"] = "Consultar Pessoa";
+}
+<h1>Consultar Pessoa</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label class="control-label">Insira o nome da pessoa:</label>
+                <input name="nome" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Insira a data de nascimento:</label>
+                <input name="idade" class="form-control" type="date"/>
+                <span class="text-danger"></span>
+            </div>            
+            <div class="form-group" style="padding-top: 1rem">
+                <input type="submit" value="Consultar" class="btn btn-primary" />
+            </div>
+            <div class="form-group" style="padding-top: 1rem">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+@{
+    @if (Model != null )
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Dependentes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pessoa in Model)
+                {
+                    <tr>
+                        <td>@pessoa.NomePessoa</td>
+                        <td>@pessoa.IdadePessoa anos</td>
+                        <td>
+                             @foreach (var dependente in pessoa.Dependentes)
+                             {
+                                 if (string.IsNullOrEmpty(dependente.NomeDependente))
+                                 {
+                                    <ul>N/A</ul>
+
+                                 }
+                                 else
+                                 {
+                                     <ul>@dependente.NomeDependente, @dependente.IdadeDependente anos</ul>
+                                 }
+                             }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+
+
+
+
+
+
