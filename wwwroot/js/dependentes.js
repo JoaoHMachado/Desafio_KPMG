@@ -51,7 +51,15 @@ function validateDependentes() {
             isValid = false;
         }
     }
-    return isValid;
+    if (isValid) {
+        var campos = validateAllFields()
+        if (campos == true) {
+            return isValid
+        }
+        else {
+            return campos
+        }
+    }
 }
 function OcultarBtn() {
     var noPeopleMessage = document.getElementById("no-people-message");
@@ -61,4 +69,19 @@ function OcultarBtn() {
             btns[i].style.display = "none";
         }
    }
+}
+
+function validateAllFields() {
+    var isValid = true;
+    var form = document.querySelector('form');
+
+    form.querySelectorAll('input, select, textarea').forEach(function (input) {
+        if (input.type !== 'hidden' && input.type !== 'button' && !input.value.trim()) {
+            alert('Todos os campos devem ser preenchidos.');
+            isValid = false;
+            return false; // break out of the loop
+        }
+    });
+
+    return isValid;
 }

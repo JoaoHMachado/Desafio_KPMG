@@ -11,18 +11,5 @@ function OcultarBtn() {
         }
    }
 }
-function validateAllFields() {
-    var isValid = true;
-    var form = document.querySelector('form');
 
-    form.querySelectorAll('input, select, textarea').forEach(function (input) {
-        if (input.type !== 'hidden' && input.type !== 'button' && !input.value.trim()) {
-            alert('Todos os campos devem ser preenchidos.');
-            isValid = false;
-            return false; // break out of the loop
-        }
-    });
-
-    return isValid;
-}
 

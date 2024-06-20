@@ -300,3 +300,4 @@ C:\Users\feedc\Downloads\WebAppPeopleCRUD\obj\Debug\net8.0\refint\WebAppPeopleCR
 C:\Users\feedc\Downloads\WebAppPeopleCRUD\obj\Debug\net8.0\WebAppPeopleCRUD.pdb
 C:\Users\feedc\Downloads\WebAppPeopleCRUD\obj\Debug\net8.0\WebAppPeopleCRUD.genruntimeconfig.cache
 C:\Users\feedc\Downloads\WebAppPeopleCRUD\obj\Debug\net8.0\ref\WebAppPeopleCRUD.dll
+D:\ProjetoKPMG\WebAppPeopleCRUD\obj\Debug\net8.0\WebAppPeopleCRUD.sourcelink.json
